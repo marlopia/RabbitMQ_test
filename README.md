@@ -46,15 +46,19 @@ En el archivo app.py tenemos un frontend minimalista en Flask que nos permitirá
 python app.py
 ```
 Deberíamos ver algo tal que así:
+
 ![Flask UI](./img/1.png "Flask")
 
 Si probamos a enviar un mensaje de prueba, el trabajador debería de consumirlo y enseñarlo y veriamos lo siguiente en su terminal:
+
 ![Worker Terminal](./img/2.png "Worker")
 
 Y veriamos un pequeño pico en los gráficos de RabbitMQ:
+
 ![RabbitMQ Data](./img/3.png "RabbitMQ")
 
 Podemos hacer algo similar usando la API directamente, abriendo una herramienta de HTTP como Postman podemos enviar un POST con el JSON ya estructurado y recibiremos respuesta:
+
 ![Postman Request](./img/4.png "Postman")
 
 Por último, podemos hacer una prueba de estrés de un minuto usando la librería Faker para generar peticiones falsas. Para ello lanzamos el generador con este comando:
@@ -62,5 +66,7 @@ Por último, podemos hacer una prueba de estrés de un minuto usando la librerí
 python faker_client.py
 ```
 Y podemos ver como en RabbitMQ los gráficos se agrandan y como al trabajador le cuesta consumir los mensajes más de la velocidad de las que llegan, pero al estar en cola de RabbitMQ no los ignora y va poco a poco.
+
 ![RabbitMQ Stress](./img/5.png "RabbitMQ Stress")
+
 ![Worker Stress](./img/6.png "Worker Stress")
